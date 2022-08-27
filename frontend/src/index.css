@@ -12,11 +12,273 @@ code {
     monospace;
 }
 
-/* ================== */
+/* ========= NAVBAR ========= */
 
 .navbar{
   box-shadow: none !important;
 }
 button:hover{
   background-color: none !important;
+}
+
+/* ========== BANNER ========= */
+.banner_discount{
+  height: 345px;
+  border: 2px solid rgb(255, 153, 0);
+  margin-top: 30px;
+  border-radius: 5px;
+}
+.banner_discount:hover{
+  border: 2px solid #10B981;
+}
+.banner_discount-header{
+  background-color: #FFEDD5;
+  padding: 6px 0px;
+  text-align: center;
+  box-shadow: 0px 0.1px 1px 0px gray;
+}
+.banner_discount-card{
+  height: 120px;
+  margin: 20px;
+  display: flex;
+  box-sizing: border-box;
+  box-shadow: 0px 0.5px 2px 0px gray;
+  border-radius: 7px;
+}
+.banner_discount-card img{
+  width: 90px;
+  height: 90px;
+  /* padding: 10px; */
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 7px;
+}
+.discount-card-divOne{
+  display: flex;
+  padding: 10px 13px 10px 10px;
+  line-height: 31px;
+  border-right: 1px dashed #e1e2e4;
+  margin-right: 10px;
+  width: 295px;
+}
+.discount-card-divOne h4{
+  font-weight: bold;
+}
+.discount-card-statusOne{
+  background-color: #FEE2E2;
+  color: #DC2626;
+  padding: 3px 15px;
+  margin-left: 10px;
+  border-radius: 20px;
+  
+}
+.discount-card-statusTwo{
+  background-color: #D1FAE5;
+  color: #059691;
+  padding: 3px 15px;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+.discount-card-divTwo{
+  width: 30%;
+  padding: 10px;
+}
+.discount-card-divTwo p{
+  font-size: 12px;
+  text-align:start;
+}
+.discount-card-divTwo h4{
+  background-color: #ECFDF5;
+  text-align: center;
+  margin: 5px 0px;
+  padding: 5px 15px ;
+  color: #05A396;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px dashed #05A396;
+  border-radius: 5px;
+}
+.banner-footer{
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFEDD5;
+  height: 100px;
+  margin-top: 50px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+.banner-footer span{
+  color: #059669;
+  font-weight: bold;
+}
+.banner-footer button{
+  background-color: #10B981;
+  color: white;
+  padding: 7px 20px;
+  font-size: 15px;
+  border-radius: 20px;
+}
+/* ========== SWIPER SLIDER ============ */
+.swiper {
+  height: 345px;
+  margin-top: 30px;
+}
+
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 var(--swiper-pagination-bullet-horizontal-gap,4px);
+  background-color: #fff !important;
+}
+.swiper-one{
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 20%;
+  left: 50px;
+  width: 290px;
+  justify-content: start;
+}
+
+.overlay h1{
+  color: rgb(37, 37, 37);
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.overlay p{
+  color: rgb(37, 37, 37);
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.overlay button{
+  background-color: #10B981;
+  color: white;
+  padding: 7px 20px;
+  font-size: 15px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+.overlay button:hover{
+   background-color: #059669;
+}
+
+
+
+/* ========= Auth ======== */
+.auth-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 7px;
+}
+.Auth_main{
+  text-align: center;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+.Auth_main h3{
+  text-align: start;
+  margin-left: 30px;
+}
+.Auth_main h2{
+  font-size: 30px;
+  font-weight: bold;
+}
+.auth-subHeading{
+  font-size: 18px;
+  color: grey;
+  margin-bottom: 40px;
+}
+.auth-button{
+  width: 100%;
+  background-color:#10B981;
+  margin-top: 13px;
+  padding: 10px 0px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+.auth-button:hover{
+  background-color: #059669;
+}
+.auth-forgot{
+  text-align: start;
+  font-size: 14px;
+  margin: 10px 0px 0px 0px;
+}
+.auth-forgot:hover{
+  color: #059669;
+}
+.auth-divider{
+  margin: 25px 0px;
+  color: #1d1a1a ;
+}
+.auth-socail-button{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.auth-socail-button button{
+  text-align: center;
+  background-color: #EEF2FF;
+  width: 200px;
+  padding: 10px 0px;
+  font-weight: bold;
+  border-radius: 5px;
+  color: rgb(119, 119, 119);
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+.auth-socail-button-One:hover{
+  background-color: #2563EB;
+  color: white;
+  transition: 0.5s;
+}
+.auth-socail-button-Two:hover{
+  background-color: #EF4444;
+  color: white;
+  transition: 0.5s;
+}
+.auth-link{
+  font-weight: bold;
+}
+.auth-link:hover{
+  color: #059669;
+}
+
+/* ============= FOOTER ========== */
+.footer-banner{
+  height: 430px;
+  width: 100%;
+  background-color: #EEF2FF;
+  margin-top: 50px;
 }
