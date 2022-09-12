@@ -2,9 +2,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 import Home from "./Pages/Home/Home";
-import Registration from "./Pages/Auth/Registration";
-import Login from "./Pages/Auth/Login";
-import Forgot from './Pages/Auth/Forgot';
+import Contact from './Pages/Contact/Contact';
+import About from './Pages/About/About';
+
 
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
       />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/registration" element={<Registration/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/forgot" element={<Forgot/>}/>
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<About />} />
+
     </Routes>
   </BrowserRouter>,
     </>
