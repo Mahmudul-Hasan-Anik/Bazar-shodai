@@ -1,13 +1,9 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-  firstName: {
+  name: {
     type: String,
-    required: [true, "First Name is Requried"],
-  },
-  lastName: {
-    type: String,
-    required: [true, "Last Name is Requried"],
+    required: [true, "Name is Requried"],
   },
   userName: {
     type: String,
@@ -30,25 +26,6 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "",
     trim: true,
-  },
-  gender: {
-    type: String,
-    required: [true, "Gender is Requried"],
-    trim: true,
-  },
-  birthDay: {
-    type: Number,
-    required: [true, "Birth Day is Requried"],
-    trim: true,
-  },
-  birthMonth: {
-    type: Number,
-    required: [true, "Birth Month is Requried"],
-    trim: true,
-  },
-  birthYear: {
-    type: Number,
-    required: [true, "Birth Year is Requried"],
   },
   search: [
     {

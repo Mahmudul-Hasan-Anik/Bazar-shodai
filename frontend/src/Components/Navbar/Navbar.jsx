@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   AppBar,
@@ -10,7 +11,7 @@ import {
   OutlinedInput,
   Modal,
   Backdrop,
-  Button,
+  Avatar,
 } from "@mui/material";
 
 import InputAdornment from "@mui/material/InputAdornment";
@@ -22,11 +23,18 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 
 import NavbarFooter from "../Navbar/NavbarFooter";
 import Auth from "../../Pages/Auth/Auth";
+import { open, close } from "../../features/modal/modalSlice";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
+  const {
+    user: { name },
+  } = useSelector((state) => state.user);
+
+  const profileName = name.split(" ");
+  const [show, setShow] = useState(false);
+  const handleOpen = () => setShow(dispatch(open()));
+  const handleClose = () => setShow(false);
 
   return (
     <>
@@ -80,7 +88,7 @@ const Navbar = () => {
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
               style={{ marginLeft: "100px" }}
             >
-              <FormControl sx={{ m: 3, width: "80ch" }} variant="outlined">
+              <FormControl sx={{ m: 0, width: "80ch" }} variant="outlined">
                 <OutlinedInput
                   className="search-input"
                   style={{
@@ -109,9 +117,14 @@ const Navbar = () => {
               <IconButton sx={{ p: 2, color: "white" }}>
                 <ShoppingCartOutlinedIcon />
               </IconButton>
-              <IconButton sx={{ p: 2, color: "white" }} onClick={handleOpen}>
-                <PermIdentityOutlinedIcon />
-              </IconButton>
+              {name ? (
+                // <span>{profileName[1]}</span>
+                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+              ) : (
+                <IconButton sx={{ p: 2, color: "white" }} onClick={handleOpen}>
+                  <PermIdentityOutlinedIcon />
+                </IconButton>
+              )}
             </Box>
           </Toolbar>
         </Container>
@@ -123,7 +136,7 @@ const Navbar = () => {
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
-          open={open}
+          open={show}
           onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}

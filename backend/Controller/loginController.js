@@ -18,8 +18,7 @@ exports.login = async (req, res) => {
       const token = genarentToken({ id: user._id.toString() }, "3d");
       res.send({
         id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        name: user.name,
         userName: user.userName,
         token: token,
         massage: "Login Successful",

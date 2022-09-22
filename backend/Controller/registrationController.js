@@ -8,17 +8,9 @@ const bcrypt = require("bcrypt");
 const { genarentToken } = require("../Helpers/token.js");
 
 exports.registration = async (req, res) => {
+  console.log(req.body);
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      gender,
-      birthDay,
-      birthMonth,
-      birthYear,
-    } = req.body;
+    const { name, email, password } = req.body;
 
     // CHECKING VALIDATION
     if (!emailValidation(email)) {
@@ -31,17 +23,10 @@ exports.registration = async (req, res) => {
     }
 
     // FIRST NAME LENGTH CHECK
-    if (!lengthValidation(firstName, 30, 4)) {
+    if (!lengthValidation(name, 30, 4)) {
       return res
         .status(400)
         .send({ massage: "First Name must between 4 to 20 character" });
-    }
-
-    // LAST NAME LENGTH CHECK
-    if (!lengthValidation(lastName, 30, 3)) {
-      return res
-        .status(400)
-        .send({ massage: "Last Name must between 3 to 20 character" });
     }
 
     // PASSWORD LENGTH CHECK
@@ -54,19 +39,14 @@ exports.registration = async (req, res) => {
     const bcryptedPassword = bcrypt.hashSync(password, 10);
 
     // USER NAME SET AND VALIDATION
-    const temporaryUserName = firstName + lastName;
+    const temporaryUserName = name.split(" ").join("-");
     const newUserName = await userNameValidation(temporaryUserName);
 
     const newUser = new User({
-      firstName,
-      lastName,
+      name,
       userName: newUserName,
       email,
       password: bcryptedPassword,
-      gender,
-      birthDay,
-      birthMonth,
-      birthYear,
     });
 
     await newUser.save();
@@ -76,8 +56,7 @@ exports.registration = async (req, res) => {
 
     res.send({
       id: newUser._id,
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
+      name: newUser.name,
       userName: newUser.userName,
       token: token,
       massage: "Registration Successful",

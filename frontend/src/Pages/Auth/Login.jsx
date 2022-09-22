@@ -12,16 +12,17 @@ import {
 } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import axios from "../../Helpers/axios";
 
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
+import { login } from "../../features/auth/authSlice";
 
 const Login = (props) => {
-  console.log(props);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { search } = useLocation();
   const rediractUrl = new URLSearchParams(search).get("redirect");
@@ -69,18 +70,13 @@ const Login = (props) => {
       );
     } else {
       axios
-        .post("/user/api/signin", {
+        .post("/api/user/login", {
           email: email,
           password: password,
         })
         .then((data) => {
+          dispatch(login(data.data));
           navigate("/");
-          // userDispatch({
-          //   type: 'USER_LOGIN',
-          //   payload: data.data
-          // })
-
-          localStorage.setItem("user", JSON.stringify(data.data));
 
           setValues({
             ...values,

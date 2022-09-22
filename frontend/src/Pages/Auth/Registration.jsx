@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import {
-  Button,
   IconButton,
   FormControl,
   TextField,
@@ -11,23 +10,19 @@ import {
   OutlinedInput,
   Grid,
 } from "@mui/material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 
+// import axios from "axios";
+import axios from "../../Helpers/axios";
+import { useDispatch } from "react-redux";
+
 const Registration = (props) => {
-  console.log(props);
-
-  const navigate = useNavigate();
-  const { search } = useLocation();
-  const rediractUrl = new URLSearchParams(search).get("redirect");
-  const redirect = rediractUrl ? rediractUrl : "/";
-
+  const dispatch = useDispatch();
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -55,7 +50,7 @@ const Registration = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password, conPassword } = values;
+    const { name, email, password } = values;
 
     if (!name || !email || !password) {
       toast.error("Please fill all input box");
@@ -72,15 +67,15 @@ const Registration = (props) => {
         "Minimum eight characters, at least one letter, one number and one special character"
       );
     } else {
-      navigate("/login");
-
       axios
-        .post("/user/api/signup", {
+        .post("api/user/registration", {
           name: name,
           email: email,
           password: password,
         })
-        .then(() => {
+        .then((data) => {
+          props.setLogin(true);
+
           setValues({
             ...values,
             name: "",
@@ -92,13 +87,6 @@ const Registration = (props) => {
       toast.success("Registration Successful");
     }
   };
-
-  // REDIRECT AFTER USER IS AVAILABLE
-  // useEffect(()=>{
-  //   if(user){
-  //     navigate(redirect)
-  //   }
-  // })
 
   const handleMoveToLogin = () => {
     props.setLogin(!props.login);
